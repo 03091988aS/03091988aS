@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "name": "Launch Extension",
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js"
+            ],
+            "preLaunchTask": "npm",
+            "request": "launch",
+            "type": "pwa-extensionHost"
+        },
+        {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Debug Microcontroller",
+            "target": "extended-remote /dev/cu.usbmodem00000000",
+            "executable": "./bin/executable.elf",
+            "cwd": "${workspaceRoot}",
+            "autorun": [
+                "monitor tpwr enable",
+                "monitor swdp_scan",
+                "attach 1",
+                "load ./bin/executable.elf"
+            ]
+        },
+        {
+            "name": "Launch Microsoft Edge and open the Edge DevTools",
+            "request": "launch",
+            "type": "vscode-edge-devtools.debug",
+            "url": "" // Provide your project's url to finish configuring
+        }
+    ]
+}
